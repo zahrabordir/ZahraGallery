@@ -18,6 +18,38 @@ header{background:linear-gradient(to right,#6a11cb,#2575fc);color:white;padding:
 footer{background:#222;color:white;text-align:center;padding:20px;margin-top:30px}
 </style>
 </head>
+
+ <!-- Modal Zoom -->
+<div id="imgModal" style="
+display:none;
+position:fixed;
+z-index:999;
+left:0; top:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+">
+  <span onclick="closeImg()" style="
+position:absolute;
+top:20px; right:30px;
+font-size:40px;
+color:white;
+cursor:pointer;
+">&times;</span>
+
+  <img id="modalImg" style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<script>
+function openImg(src){
+  document.getElementById("imgModal").style.display="flex";
+  document.getElementById("modalImg").src = src;
+}
+function closeImg(){
+  document.getElementById("imgModal").style.display="none";
+}
+</script>
 <body>
 
 <header>
@@ -30,84 +62,84 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:30p
 <h2>Galeri Produk</h2>
 <div class="gallery">
 <div class="card">
-<img src="images/Zahra Frame-1.jpg" alt="Model 1">
+<img src="images/Zahra Frame-1.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 1">
 <h3>Model 1</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-2.jpg" alt="Model 2">
+<img src="images/Zahra Frame-2.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 2">
 <h3>Model 2</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-3.jpg" alt="Model 3">
+<img src="images/Zahra Frame-3.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 3">
 <h3>Model 3</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-4.jpg" alt="Model 4">
+<img src="images/Zahra Frame-4.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 4">
 <h3>Model 4</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-5.jpg" alt="Model 5">
+<img src="images/Zahra Frame-5.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 5">
 <h3>Model 5</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-6.jpg" alt="Model 6">
+<img src="images/Zahra Frame-6.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 6">
 <h3>Model 6</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-7.jpg" alt="Model 7">
+<img src="images/Zahra Frame-7.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 7">
 <h3>Model 7</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-8.jpg" alt="Model 8">
+<img src="images/Zahra Frame-8.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 8">
 <h3>Model 8</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/Zahra Frame-9.jpg" alt="Model 9">
+<img src="images/Zahra Frame-9.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="Model 9">
 <h3>Model 8</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
 
 <div class="card">
-<img src="images/PPG All Zahra-1.jpg" alt="PPG1">
+<img src="images/PPG All Zahra-1.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="PPG1">
 <h3>PPG1</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
  
 <div class="card">
-<img src="images/PPG All Zahra-2.jpg" alt="PPG2">
+<img src="images/PPG All Zahra-1.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="PPG2">
 <h3>PPG2</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
 </div>
   
 <div class="card">
-<img src="images/PPG All Zahra-3.jpg" alt="PPG3">
+<img src="images/PPG All Zahra-1.jpg" onclick="openImg(this.src)" style="cursor:pointer" alt="PPG3">
 <h3>PPG3</h3>
 <p class="price">Chat Admin</p>
 <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
@@ -138,4 +170,5 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:30p
 </body>
 
 </html>
+
 
