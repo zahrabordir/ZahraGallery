@@ -6,16 +6,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{margin:0;font-family:Arial;background:#f2f2f2}
-header{background:linear-gradient(to right,#6a11cb,#2575fc);color:white;padding:50px 20px;text-align:center}
-.btn{background:#ffcc00;color:black;padding:12px 25px;text-decoration:none;border-radius:5px;display:inline-block;margin-top:15px;font-weight:bold}
-.container{max-width:1200px;margin:auto;padding:30px 15px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.2);text-align:center}
-.card img{width:100%;height:260px;object-fit:cover;cursor:pointer}
+
+/* HEADER */
+header{
+  background:linear-gradient(to right,#6a11cb,#2575fc);
+  color:white;
+  padding:50px 20px;
+  text-align:center
+}
+
+.btn{
+  background:#ffcc00;
+  color:black;
+  padding:12px 25px;
+  text-decoration:none;
+  border-radius:5px;
+  display:inline-block;
+  margin-top:15px;
+  font-weight:bold
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 15px
+}
+
+/* GALERI */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px
+}
+
+.card{
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  text-align:center
+}
+
+.card img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  cursor:pointer
+}
+
 .price{color:#e91e63;font-weight:bold}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px}
-.feature{background:white;padding:20px;border-radius:10px;text-align:center}
-footer{background:#222;color:white;text-align:center;padding:20px;margin-top:30px}
+
+/* KEUNGGULAN */
+.keunggulan{
+  background:linear-gradient(to right,#6a11cb,#2575fc);
+  padding:50px 20px;
+  margin-top:30px
+}
+
+.keunggulan h2{
+  color:white;
+  text-align:center
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:20px
+}
+
+.feature{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  text-align:center
+}
+
+/* FOOTER */
+footer{
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:30px
+}
 </style>
 </head>
 
@@ -93,42 +167,23 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:30p
     <p class="price">Chat Admin</p>
     <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
   </div>
-
-  <div class="card">
-    <img src="images/PPG All Zahra-1.jpg" onclick="openImg(this.src)" alt="PPG 1">
-    <h3>PPG 1</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
-  </div>
-
-  <div class="card">
-    <img src="images/PPG All Zahra-1.jpg" onclick="openImg(this.src)" alt="PPG 2">
-    <h3>PPG 2</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
-  </div>
-
-  <div class="card">
-    <img src="images/PPG All Zahra-1.jpg" onclick="openImg(this.src)" alt="PPG 3">
-    <h3>PPG 3</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
-  </div>
+</div>
 </div>
 
+<div class="keunggulan">
 <h2>Keunggulan Produk</h2>
 <div class="features">
   <div class="feature">
     <h3>Bisa Custom</h3>
-    <p>Logo, jurusan dll</p>
+    <p>Logo, jurusan, dan nama bisa request</p>
   </div>
   <div class="feature">
     <h3>Banyak Motif</h3>
-    <p>Warna selempang, motif umum dll</p>
+    <p>Pilihan warna & desain lengkap</p>
   </div>
   <div class="feature">
     <h3>Pengerjaan Cepat</h3>
-    <p>Pakai mesin lebih cepat dan rapi</p>
+    <p>Produksi rapi dengan mesin</p>
   </div>
 </div>
 </div>
@@ -137,7 +192,7 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:30p
 <p>© 2026 Zahra Gallery</p>
 </footer>
 
-<!-- Modal Zoom -->
+<!-- MODAL ZOOM -->
 <div id="imgModal" style="
 display:none;
 position:fixed;
@@ -170,5 +225,3 @@ function closeImg(){
 
 </body>
 </html>
-
-
