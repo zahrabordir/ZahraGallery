@@ -47,10 +47,6 @@ h1{
   font-size:22px;
   margin-bottom:10px;
 }
-.rating{
-  color:#f5a623;
-  margin-bottom:10px;
-}
 .price{
   color:#ee4d2d;
   font-size:28px;
@@ -58,27 +54,38 @@ h1{
   margin:15px 0;
 }
 
-.option-group{
-  margin:15px 0;
-}
-.option-group span{
-  display:block;
-  margin-bottom:8px;
-  font-weight:bold;
-}
-.options{
+/* MODEL THUMB */
+.model-options{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
 }
-.options button{
+.model-options img{
+  width:60px;
+  height:60px;
+  object-fit:cover;
+  border:2px solid #ccc;
+  border-radius:6px;
+  cursor:pointer;
+}
+.model-options img.active{
+  border-color:#ee4d2d;
+}
+
+/* WARNA */
+.color-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.color-options button{
   border:1px solid #ccc;
   background:white;
   padding:8px 12px;
   border-radius:4px;
   cursor:pointer;
 }
-.options button.active{
+.color-options button.active{
   border-color:#ee4d2d;
   color:#ee4d2d;
 }
@@ -136,31 +143,33 @@ h1{
 
     <!-- RIGHT INFO -->
     <div>
-      <h1>SELEMPANG WISUDA LEHER MOTIF BATIK</h1>
+      <h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
 
       <div class="price">Rp65.000</div>
 
-      <div class="option-group">
-        <span>Pilihan Model</span>
-        <div class="options">
-          <button class="active">Model 1</button>
-          <button>Model 2</button>
-          <button>Model 3</button>
-          <button>Model 4</button>
-          <button>Model 5</button>
-          <button>Model 6</button>
-          <button>Model 7</button>
-          <button>Model 8</button>
-          <button>Model 9</button>
-          <button>Model PPG 1</button>
-          <button>Model PPG 2</button>
-          <button>Model Custom</button>
+      <!-- PILIHAN MODEL -->
+      <div style="margin:15px 0;">
+        <strong>Pilihan Model</strong>
+        <div class="model-options">
+          <img src="images/Model1.jpg" class="active" onclick="selectModel(this)">
+          <img src="images/Model2.jpg" onclick="selectModel(this)">
+          <img src="images/Model3.jpg" onclick="selectModel(this)">
+          <img src="images/Model4.jpg" onclick="selectModel(this)">
+          <img src="images/Model5.jpg" onclick="selectModel(this)">
+          <img src="images/Model6.jpg" onclick="selectModel(this)">
+          <img src="images/Model7.jpg" onclick="selectModel(this)">
+          <img src="images/Model8.jpg" onclick="selectModel(this)">
+          <img src="images/Model9.jpg" onclick="selectModel(this)">
+          <img src="images/Model PPG1.jpg" onclick="selectModel(this)">
+          <img src="images/Model PPG2.jpg" onclick="selectModel(this)">
+          <img src="images/Model PPG3.jpg" onclick="selectModel(this)">
         </div>
       </div>
 
-      <div class="option-group">
-        <span>Warna + Tulisan</span>
-        <div class="options">
+      <!-- WARNA -->
+      <div style="margin:15px 0;">
+        <strong>Warna + Tulisan</strong>
+        <div class="color-options">
           <button class="active">Maroon Gold</button>
           <button>Maroon Silver</button>
           <button>Hitam Gold</button>
@@ -190,11 +199,17 @@ function changeImg(el){
   el.classList.add("active");
 }
 
-// option active
-document.querySelectorAll(".options button").forEach(btn=>{
+function selectModel(el){
+  document.querySelectorAll(".model-options img").forEach(img=>{
+    img.classList.remove("active");
+  });
+  el.classList.add("active");
+}
+
+// warna aktif
+document.querySelectorAll(".color-options button").forEach(btn=>{
   btn.addEventListener("click", function(){
-    let parent = this.parentElement;
-    parent.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
     this.classList.add("active");
   });
 });
@@ -202,16 +217,3 @@ document.querySelectorAll(".options button").forEach(btn=>{
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
