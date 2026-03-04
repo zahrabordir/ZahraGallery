@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Selempang Wisuda Custom</title>
+<title>Galeri Produk</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{margin:0;font-family:Arial;background:#f2f2f2}
@@ -10,15 +10,7 @@ header{
   background:linear-gradient(135deg,#6a11cb,#2575fc);
   color:white;padding:50px 20px;text-align:center
 }
-.btn{
-  background:#ffcc00;color:black;
-  padding:10px 22px;text-decoration:none;
-  border-radius:20px;font-weight:bold;
-  border:none;cursor:pointer
-}
 .container{max-width:1200px;margin:auto;padding:30px 15px}
-
-/* GALERI UTAMA */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -45,14 +37,26 @@ header{
   box-shadow:0 4px 10px rgba(0,0,0,.3)
 }
 
-footer{background:#222;color:white;text-align:center;padding:20px;margin-top:50px}
-
 /* MODAL */
 #imgModal{
   display:none;position:fixed;z-index:999;
   left:0;top:0;width:100%;height:100%;
   background:rgba(0,0,0,.85);
-  justify-content:center;align-items:center
+  justify-content:center;align-items:center;
+  flex-direction:column
+}
+#imgModal img{
+  max-width:90%;max-height:80%;border-radius:10px
+}
+.modal-btn{
+  background:#ffcc00;border:none;
+  padding:10px 18px;margin:10px;
+  border-radius:20px;font-weight:bold;
+  cursor:pointer
+}
+.close{
+  position:absolute;top:20px;right:30px;
+  font-size:40px;color:white;cursor:pointer
 }
 </style>
 </head>
@@ -61,129 +65,118 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:50p
 
 <header>
 <h1>Selempang Wisuda Custom</h1>
-<p>Hadiah Spesial untuk Momen Kelulusan 🎓</p>
-<a href="https://wa.me/6285117110259" class="btn">Pesan Sekarang</a>
+<p>Galeri Motif Bordir</p>
 </header>
 
 <div class="container">
-
-<h2 style="text-align:center">Galeri Produk</h2>
 
 <div class="gallery">
   <div class="card">
     <img src="images/Zahra Frame-1.jpg">
     <h3>Batik Daun</h3>
-    <a href="images/Batik Daun/Batik Daun 1.webp" class="subgaleri-link">Lihat Galeri</a>
+    <a href="#galeri1" class="subgaleri-link">Lihat Galeri</a>
   </div>
   <div class="card">
     <img src="images/Zahra Frame-2.jpg">
     <h3>Batik Flora</h3>
-    <a href="images/Batik Flora" class="subgaleri-link">Lihat Galeri</a>
+    <a href="#galeri2" class="subgaleri-link">Lihat Galeri</a>
   </div>
   <div class="card">
     <img src="images/Zahra Frame-3.jpg">
     <h3>Batik Kait</h3>
-    <a href="images/Batik Kait" class="subgaleri-link">Lihat Galeri</a>
+    <a href="#galeri3" class="subgaleri-link">Lihat Galeri</a>
   </div>
   <div class="card">
     <img src="images/Zahra Frame-4.jpg">
     <h3>Batik Klasik</h3>
-    <a href="images/Batik Klasik" class="subgaleri-link">Lihat Galeri</a>
+    <a href="#galeri4" class="subgaleri-link">Lihat Galeri</a>
   </div>
   <div class="card">
     <img src="images/Zahra Frame-5.jpg">
     <h3>Batik Serat</h3>
-    <a href="images/Batik Serat" class="subgaleri-link">Lihat Galeri</a>
+    <a href="#galeri5" class="subgaleri-link">Lihat Galeri</a>
   </div>
   <div class="card">
     <img src="images/Zahra Frame-6.jpg">
     <h3>Batik Simpul</h3>
-    <a href="Simpul" class="subgaleri-link">Lihat Galeri</a>
+    <a href="#galeri6" class="subgaleri-link">Lihat Galeri</a>
   </div>
 </div>
 
 <!-- SUB GALERI -->
 <div id="galeri1" class="subgaleri">
 <h2>Batik Daun</h2>
-<img id="img1" src="images/Batik Daun/Batik Daun 1.webp" onclick="openImg(this.src)">
-<br><button class="btn" onclick="prev(1)">Prev</button>
-<button class="btn" onclick="next(1)">Next</button>
+<img src="images/Batik Daun/Batik Daun 1.webp" onclick="openGallery(1,0)">
 </div>
 
 <div id="galeri2" class="subgaleri">
 <h2>Batik Flora</h2>
-<img id="img2" src="images/Batik Flora/Batik Flora 1.webp" onclick="openImg(this.src)">
-<br><button class="btn" onclick="prev(2)">Prev</button>
-<button class="btn" onclick="next(2)">Next</button>
+<img src="images/Batik Flora/Batik Flora 1.webp" onclick="openGallery(2,0)">
 </div>
 
 <div id="galeri3" class="subgaleri">
 <h2>Batik Kait</h2>
-<img id="img3" src="images/Batik Kait/Batik Kait 1.webp" onclick="openImg(this.src)">
-<br><button class="btn" onclick="prev(3)">Prev</button>
-<button class="btn" onclick="next(3)">Next</button>
+<img src="images/Batik Kait/Batik Kait 1.webp" onclick="openGallery(3,0)">
 </div>
 
 <div id="galeri4" class="subgaleri">
 <h2>Batik Klasik</h2>
-<img id="img4" src="images/Batik Klasik/Batik Klasik 1.webp" onclick="openImg(this.src)">
-<br><button class="btn" onclick="prev(4)">Prev</button>
-<button class="btn" onclick="next(4)">Next</button>
+<img src="images/Batik Klasik/Batik Klasik 1.webp" onclick="openGallery(4,0)">
 </div>
 
 <div id="galeri5" class="subgaleri">
 <h2>Batik Serat</h2>
-<img id="img5" src="images/Batik Serat/Batik Serat 1.webp" onclick="openImg(this.src)">
-<br><button class="btn" onclick="prev(5)">Prev</button>
-<button class="btn" onclick="next(5)">Next</button>
+<img src="images/Batik Serat/Batik Serat 1.webp" onclick="openGallery(5,0)">
 </div>
 
 <div id="galeri6" class="subgaleri">
 <h2>Batik Simpul</h2>
-<img id="img6" src="images/Batik Simpul/Batik Simpul 1.webp" onclick="openImg(this.src)">
-<br><button class="btn" onclick="prev(6)">Prev</button>
-<button class="btn" onclick="next(6)">Next</button>
+<img src="images/Batik Simpul/Batik Simpul 1.webp" onclick="openGallery(6,0)">
 </div>
 
 </div>
-
-<footer>
-<p>© 2026 Zahra Gallery</p>
-</footer>
 
 <!-- MODAL -->
 <div id="imgModal">
-  <span onclick="closeImg()" style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
-  <img id="modalImg" style="max-width:90%;max-height:90%;border-radius:10px;">
+  <span class="close" onclick="closeImg()">&times;</span>
+  <img id="modalImg">
+  <div>
+    <button class="modal-btn" onclick="prev()">Prev</button>
+    <button class="modal-btn" onclick="next()">Next</button>
+  </div>
 </div>
 
 <script>
 let galleries = {
   1:["images/Batik Daun/Batik Daun 1.webp","images/Batik Daun/Batik Daun 2.webp","images/Batik Daun/Batik Daun 3.webp"],
   2:["images/Batik Flora/Batik Flora 1.webp","images/Batik Flora/Batik Flora 2.webp","images/Batik Flora/Batik Flora 3.webp"],
-  3:["images/Batik Kait/Batik Kait 1.webp","images/Batik Kait/Batik Kait 2.webp","images/Batik Kait/Batik Kait 3.webp"],
+  3:["images/Batik Kait/Batik Kait 1.webp","images/Batik Kait/Batik Kait 2.webp","images/Batik Kait 3.webp"],
   4:["images/Batik Klasik/Batik Klasik 1.webp","images/Batik Klasik/Batik Klasik 2.webp","images/Batik Klasik/Batik Klasik 3.webp"],
   5:["images/Batik Serat/Batik Serat 1.webp","images/Batik Serat/Batik Serat 2.webp","images/Batik Serat/Batik Serat 3.webp"],
   6:["images/Batik Simpul/Batik Simpul 1.webp","images/Batik Simpul/Batik Simpul 2.webp","images/Batik Simpul/Batik Simpul 3.webp"]
 };
 
-let index = {1:0,2:0,3:0,4:0,5:0,6:0};
+let currentGallery = 1;
+let currentIndex = 0;
 
-function next(n){
-  index[n]++;
-  if(index[n] >= galleries[n].length) index[n]=0;
-  document.getElementById("img"+n).src = galleries[n][index[n]];
-}
-function prev(n){
-  index[n]--;
-  if(index[n] < 0) index[n]=galleries[n].length-1;
-  document.getElementById("img"+n).src = galleries[n][index[n]];
-}
-
-function openImg(src){
+function openGallery(g,i){
+  currentGallery = g;
+  currentIndex = i;
+  document.getElementById("modalImg").src = galleries[g][i];
   document.getElementById("imgModal").style.display="flex";
-  document.getElementById("modalImg").src = src;
 }
+
+function next(){
+  currentIndex++;
+  if(currentIndex >= galleries[currentGallery].length) currentIndex = 0;
+  document.getElementById("modalImg").src = galleries[currentGallery][currentIndex];
+}
+function prev(){
+  currentIndex--;
+  if(currentIndex < 0) currentIndex = galleries[currentGallery].length-1;
+  document.getElementById("modalImg").src = galleries[currentGallery][currentIndex];
+}
+
 function closeImg(){
   document.getElementById("imgModal").style.display="none";
 }
@@ -191,6 +184,7 @@ function closeImg(){
 
 </body>
 </html>
+
 
 
 
