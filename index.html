@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Produk Selempang Wisuda</title>
+<title>Selempang Wisuda</title>
 <style>
 body{
   font-family:Arial, sans-serif;
@@ -17,12 +17,8 @@ body{
   display:flex;
   gap:20px;
 }
-.left{
-  width:50%;
-}
-.right{
-  width:50%;
-}
+.left{width:50%}
+.right{width:50%}
 
 /* MAIN IMAGE */
 .main-img{
@@ -35,9 +31,7 @@ body{
   display:block;
   transition:opacity .3s ease;
 }
-.fade-out{
-  opacity:0;
-}
+.fade-out{opacity:0}
 
 /* MODEL OPTIONS */
 .model-options{
@@ -56,19 +50,9 @@ body{
   border-color:#ff5722;
 }
 
-/* INFO */
-h1{
-  font-size:20px;
-  margin:0 0 10px;
-}
-.price{
-  color:#ff5722;
-  font-size:24px;
-  font-weight:bold;
-  margin:10px 0;
-}
+/* BATIK OPTIONS */
 .color-options button{
-  padding:8px 12px;
+  padding:8px 14px;
   margin:4px;
   border:1px solid #ccc;
   background:#fff;
@@ -78,24 +62,36 @@ h1{
   border-color:#ff5722;
   background:#ffe7de;
 }
-.buy{
-  margin-top:20px;
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;
+  margin-top:15px;
 }
+.gallery img{
+  width:100%;
+  border-radius:6px;
+  cursor:pointer;
+  transition:.2s;
+}
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* INFO */
+h1{font-size:20px;margin:0 0 10px}
+.price{color:#ff5722;font-size:24px;font-weight:bold;margin:10px 0}
+.buy{margin-top:20px}
 .buy button{
   padding:12px 20px;
   border:none;
   font-size:16px;
   cursor:pointer;
 }
-.cart{
-  background:#fff;
-  border:1px solid #ff5722;
-  color:#ff5722;
-}
-.now{
-  background:#ff5722;
-  color:#fff;
-}
+.cart{background:#fff;border:1px solid #ff5722;color:#ff5722}
+.now{background:#ff5722;color:#fff}
 </style>
 </head>
 <body>
@@ -106,7 +102,7 @@ h1{
       <img id="mainImage" src="images/Model1.jpg">
     </div>
 
-    <!-- MODEL THUMBNAIL -->
+    <!-- MODEL THUMB -->
     <div class="model-options">
       <img src="images/Model1.jpg" onclick="selectModel(this)" class="active">
       <img src="images/Model2.jpg" onclick="selectModel(this)">
@@ -117,24 +113,24 @@ h1{
       <img src="images/Model7.jpg" onclick="selectModel(this)">
       <img src="images/Model8.jpg" onclick="selectModel(this)">
       <img src="images/Model9.jpg" onclick="selectModel(this)">
-      <img src="images/Model PPG1.jpg" onclick="selectModel(this)">
-      <img src="images/Model PPG2.jpg" onclick="selectModel(this)">
-      <img src="images/Model PPG3.jpg" onclick="selectModel(this)">
     </div>
   </div>
 
   <div class="right">
     <h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
+    <div class="price">Rp65.000</div>
 
-      <h3>Galeri</h3>
+    <h3>Galeri</h3>
     <div class="color-options">
-      <button class="active">Batik Daun</button>
-      <button>Batik Flora</button>
-      <button>Batik Kait</button>
-      <button>Batik Klasik</button>
-      <button>Batik Serat</button>
-      <button>Batik Simpul</button>
+      <button class="active" onclick="loadGallery('Batik Daun',this)">Batik Daun</button>
+      <button onclick="loadGallery('Batik Flora',this)">Batik Flora</button>
+      <button onclick="loadGallery('Batik Kait',this)">Batik Kait</button>
+      <button onclick="loadGallery('Batik Klasik',this)">Batik Klasik</button>
+      <button onclick="loadGallery('Batik Serat',this)">Batik Serat</button>
+      <button onclick="loadGallery('Batik Simpul',this)">Batik Simpul</button>
     </div>
+
+    <div class="gallery" id="gallery"></div>
 
     <div class="buy">
       <button class="cart">Masukkan Keranjang</button>
@@ -144,33 +140,54 @@ h1{
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+const imageCount = 3; // ubah sesuai jumlah foto per folder
 
-  window.selectModel = function(el){
-    const main = document.getElementById("mainImage");
+function selectModel(el){
+  const main = document.getElementById("mainImage");
 
-    document.querySelectorAll(".model-options img").forEach(img=>{
-      img.classList.remove("active");
-    });
-    el.classList.add("active");
-
-    main.classList.add("fade-out");
-    setTimeout(()=>{
-      main.src = el.src;
-      main.classList.remove("fade-out");
-    },200);
-  }
-
-  document.querySelectorAll(".color-options button").forEach(btn=>{
-    btn.addEventListener("click", function(){
-      document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
-      this.classList.add("active");
-    });
+  document.querySelectorAll(".model-options img").forEach(img=>{
+    img.classList.remove("active");
   });
+  el.classList.add("active");
 
-});
+  main.classList.add("fade-out");
+  setTimeout(()=>{
+    main.src = el.src;
+    main.classList.remove("fade-out");
+  },200);
+}
+
+function loadGallery(folder, btn){
+  document.querySelectorAll(".color-options button").forEach(b=>{
+    b.classList.remove("active");
+  });
+  btn.classList.add("active");
+
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+
+  for(let i=1;i<=imageCount;i++){
+    const img = document.createElement("img");
+    img.src = `images/${folder}/${folder} ${i}.webp`;
+    img.onclick = ()=>changeMainImage(img.src);
+    gallery.appendChild(img);
+  }
+}
+
+function changeMainImage(src){
+  const main = document.getElementById("mainImage");
+  main.classList.add("fade-out");
+  setTimeout(()=>{
+    main.src = src;
+    main.classList.remove("fade-out");
+  },200);
+}
+
+/* default load */
+loadGallery("Batik Daun", document.querySelector(".color-options button"));
 </script>
 
 </body>
 </html>
+
 
