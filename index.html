@@ -4,181 +4,182 @@
 <meta charset="UTF-8">
 <title>Selempang Wisuda</title>
 <style>
-body{
-  font-family:Arial, sans-serif;
-  margin:0;
-  background:#f5f5f5;
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-  background:#fff;
-  display:flex;
-  gap:20px;
-}
-.left{width:50%}
-.right{width:50%}
+body{font-family:Arial;margin:0;background:#f5f5f5}
+.container{max-width:1100px;margin:auto;padding:20px;background:#fff;display:flex;gap:20px}
+.left,.right{width:50%}
 
 /* MAIN IMAGE */
-.main-img{
-  width:100%;
-  border-radius:8px;
-  overflow:hidden;
-}
-.main-img img{
-  width:100%;
-  display:block;
-  transition:opacity .3s ease;
-}
-.fade-out{opacity:0}
+.main-img img{width:100%;border-radius:8px;transition:.3s}
 
-/* MODEL OPTIONS */
-.model-options{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:8px;
-  margin-top:10px;
-}
-.model-options img{
-  width:100%;
-  cursor:pointer;
-  border:2px solid transparent;
-  border-radius:6px;
-}
-.model-options img.active{
-  border-color:#ff5722;
-}
+/* MODEL */
+.model-options{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.model-options img{width:100%;cursor:pointer;border:2px solid transparent;border-radius:6px}
+.model-options img.active{border-color:#ff5722}
 
-/* BATIK OPTIONS */
-.color-options button{
-  padding:8px 14px;
-  margin:4px;
-  border:1px solid #ccc;
-  background:#fff;
-  cursor:pointer;
-}
-.color-options button.active{
-  border-color:#ff5722;
-  background:#ffe7de;
-}
+/* BATIK */
+.color-options button{padding:8px 14px;margin:4px;border:1px solid #ccc;background:#fff;cursor:pointer}
+.color-options button.active{border-color:#ff5722;background:#ffe7de}
 
 /* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:10px;
-  margin-top:15px;
-}
-.gallery img{
-  width:100%;
-  border-radius:6px;
-  cursor:pointer;
-  transition:.2s;
-}
-.gallery img:hover{
-  transform:scale(1.05);
-}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:15px}
+.gallery img{width:100%;border-radius:6px;cursor:pointer}
 
-/* INFO */
-h1{font-size:20px;margin:0 0 10px}
-.price{color:#ff5722;font-size:24px;font-weight:bold;margin:10px 0}
-.buy{margin-top:20px}
-.buy button{
-  padding:12px 20px;
-  border:none;
-  font-size:16px;
-  cursor:pointer;
+/* LIGHTBOX */
+#lightbox{
+display:none;position:fixed;inset:0;
+background:rgba(0,0,0,.85);
+justify-content:center;align-items:center;
+z-index:999;
 }
-.cart{background:#fff;border:1px solid #ff5722;color:#ff5722}
-.now{background:#ff5722;color:#fff}
+#lightbox img{
+max-width:90%;max-height:90%;
+transition:.3s;
+touch-action:none;
+}
+.closeBtn{
+position:absolute;top:15px;right:15px;
+width:30px;height:30px;
+background:black;color:white;
+border-radius:50%;
+text-align:center;line-height:30px;
+cursor:pointer;font-weight:bold;
+}
+.navBtn{
+position:absolute;top:50%;
+transform:translateY(-50%);
+font-size:40px;color:white;
+cursor:pointer;
+opacity:.2;
+user-select:none;
+}
+.navBtn:hover{opacity:.8}
+#prev{left:15px}
+#next{right:15px}
+#indicator{
+position:absolute;bottom:20px;
+color:white;font-size:14px;
+}
 </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="left">
-    <div class="main-img">
-      <img id="mainImage" src="images/Model1.jpg">
-    </div>
+<div class="left">
+<div class="main-img">
+<img id="mainImage" src="images/Model1.jpg">
+</div>
 
-    <!-- MODEL THUMB -->
-    <div class="model-options">
-      <img src="images/Model1.jpg" onclick="selectModel(this)" class="active">
-      <img src="images/Model2.jpg" onclick="selectModel(this)">
-      <img src="images/Model3.jpg" onclick="selectModel(this)">
-      <img src="images/Model4.jpg" onclick="selectModel(this)">
-      <img src="images/Model5.jpg" onclick="selectModel(this)">
-      <img src="images/Model6.jpg" onclick="selectModel(this)">
-      <img src="images/Model7.jpg" onclick="selectModel(this)">
-      <img src="images/Model8.jpg" onclick="selectModel(this)">
-      <img src="images/Model9.jpg" onclick="selectModel(this)">
-    </div>
-  </div>
+<div class="model-options">
+<img src="images/Model1.jpg" onclick="selectModel(this)" class="active">
+<img src="images/Model2.jpg" onclick="selectModel(this)">
+<img src="images/Model3.jpg" onclick="selectModel(this)">
+<img src="images/Model4.jpg" onclick="selectModel(this)">
+<img src="images/Model5.jpg" onclick="selectModel(this)">
+<img src="images/Model6.jpg" onclick="selectModel(this)">
+</div>
+</div>
 
-  <div class="right">
-    <h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
-     <h3>Galeri</h3>
-    <div class="color-options">
-      <button class="active" onclick="loadGallery('Batik Daun',this)">Batik Daun</button>
-      <button onclick="loadGallery('Batik Flora',this)">Batik Flora</button>
-      <button onclick="loadGallery('Batik Kait',this)">Batik Kait</button>
-      <button onclick="loadGallery('Batik Klasik',this)">Batik Klasik</button>
-      <button onclick="loadGallery('Batik Serat',this)">Batik Serat</button>
-      <button onclick="loadGallery('Batik Simpul',this)">Batik Simpul</button>
-    </div>
+<div class="right">
+<h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
 
-    <div class="gallery" id="gallery"></div>
+<h3>Galeri</h3>
+<div class="color-options">
+<button class="active" onclick="loadGallery('Batik Daun',this)">Batik Daun</button>
+<button onclick="loadGallery('Batik Flora',this)">Batik Flora</button>
+<button onclick="loadGallery('Batik Kait',this)">Batik Kait</button>
+<button onclick="loadGallery('Batik Klasik',this)">Batik Klasik</button>
+<button onclick="loadGallery('Batik Serat',this)">Batik Serat</button>
+<button onclick="loadGallery('Batik Simpul',this)">Batik Simpul</button>
+</div>
 
-      </div>
+<div class="gallery" id="gallery"></div>
+</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+<div class="closeBtn" onclick="closeLightbox()">✕</div>
+<div id="prev" class="navBtn" onclick="prevImg()">❮</div>
+<img id="lightImg">
+<div id="next" class="navBtn" onclick="nextImg()">❯</div>
+<div id="indicator"></div>
 </div>
 
 <script>
-const imageCount = 3; // ubah sesuai jumlah foto per folder
+const imageCount=3;
+let currentImages=[];
+let currentIndex=0;
+let startX=0,scale=1;
 
 function selectModel(el){
-  const main = document.getElementById("mainImage");
-
-  document.querySelectorAll(".model-options img").forEach(img=>{
-    img.classList.remove("active");
-  });
-  el.classList.add("active");
-
-  main.classList.add("fade-out");
-  setTimeout(()=>{
-    main.src = el.src;
-    main.classList.remove("fade-out");
-  },200);
+document.querySelectorAll(".model-options img").forEach(i=>i.classList.remove("active"));
+el.classList.add("active");
+document.getElementById("mainImage").src=el.src;
 }
 
-function loadGallery(folder, btn){
-  document.querySelectorAll(".color-options button").forEach(b=>{
-    b.classList.remove("active");
-  });
-  btn.classList.add("active");
+function loadGallery(folder,btn){
+document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
 
-  const gallery = document.getElementById("gallery");
-  gallery.innerHTML = "";
+const gallery=document.getElementById("gallery");
+gallery.innerHTML="";
+currentImages=[];
 
-  for(let i=1;i<=imageCount;i++){
-    const img = document.createElement("img");
-    img.src = `images/${folder}/${folder} ${i}.webp`;
-    img.onclick = ()=>changeMainImage(img.src);
-    gallery.appendChild(img);
-  }
+for(let i=1;i<=imageCount;i++){
+let src=`images/${folder}/${folder} ${i}.webp`;
+currentImages.push(src);
+let img=document.createElement("img");
+img.src=src;
+img.onclick=()=>openLightbox(i-1);
+gallery.appendChild(img);
+}
 }
 
-function changeMainImage(src){
-  const main = document.getElementById("mainImage");
-  main.classList.add("fade-out");
-  setTimeout(()=>{
-    main.src = src;
-    main.classList.remove("fade-out");
-  },200);
+function openLightbox(index){
+currentIndex=index;
+document.getElementById("lightbox").style.display="flex";
+updateLightbox();
 }
 
-/* default load */
-loadGallery("Batik Daun", document.querySelector(".color-options button"));
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+scale=1;
+document.getElementById("lightImg").style.transform="scale(1)";
+}
+
+function updateLightbox(){
+const img=document.getElementById("lightImg");
+img.src=currentImages[currentIndex];
+document.getElementById("indicator").innerText=`${currentIndex+1} / ${currentImages.length}`;
+}
+
+function nextImg(){
+currentIndex=(currentIndex+1)%currentImages.length;
+updateLightbox();
+}
+function prevImg(){
+currentIndex=(currentIndex-1+currentImages.length)%currentImages.length;
+updateLightbox();
+}
+
+/* swipe */
+const lightImg=document.getElementById("lightImg");
+lightImg.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+lightImg.addEventListener("touchend",e=>{
+let diff=e.changedTouches[0].clientX-startX;
+if(diff>50) prevImg();
+if(diff<-50) nextImg();
+});
+
+/* pinch zoom */
+lightImg.addEventListener("wheel",e=>{
+e.preventDefault();
+scale+=e.deltaY*-0.001;
+scale=Math.min(Math.max(.5,scale),3);
+lightImg.style.transform=`scale(${scale})`;
+});
+
+loadGallery("Batik Daun",document.querySelector(".color-options button"));
 </script>
 
 </body>
