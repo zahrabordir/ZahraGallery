@@ -14,52 +14,27 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
   .container{flex-direction:column}
   .left,.right{width:100%}
 
-  .left{order:1}
-  .right{order:2}
-  .model-box{order:3}
+  /* urutan tampilan di HP */
+  .left{order:1;}   /* gambar utama */
+  .right{order:2;}  /* JUDUL + GALERI dulu */
+  .model-options{order:3;} /* MODEL di bawah */
 }
 
 /* MAIN IMAGE */
-.main-img img{width:100%;border-radius:8px;cursor:zoom-in}
+.main-img img{width:100%;border-radius:8px;cursor:zoom-in;transition:.3s}
 
 /* MODEL */
-.model-box{margin-top:15px}
-.toggleModel{
-  background:#ff5722;
-  color:white;
-  border:none;
-  padding:10px;
-  width:100%;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:14px;
-}
 .model-options{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
-  gap:8px;
-  margin-top:10px;
-  overflow:hidden;
-  transition:max-height .4s ease, opacity .3s ease;
+  grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+  gap:8px;margin-top:10px
 }
 .model-options img{
-  width:100%;
-  cursor:pointer;
+  width:100%;cursor:pointer;
   border:2px solid transparent;
   border-radius:6px
 }
 .model-options img.active{border-color:#ff5722}
-
-/* default hidden (mobile) */
-.model-options.hide{
-  max-height:0;
-  opacity:0;
-  pointer-events:none;
-}
-.model-options.show{
-  max-height:1000px;
-  opacity:1;
-}
 
 /* BATIK */
 .color-options button{
@@ -75,7 +50,7 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 /* GALLERY */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
   gap:10px;margin-top:15px
 }
 .gallery img{
@@ -123,9 +98,20 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 <img id="mainImage" src="images/Model1.jpg" onclick="openLightbox()">
 </div>
 
-<div class="model-box">
-<button class="toggleModel" onclick="toggleModel()">Tampilkan Model ▼</button>
-<div class="model-options hide" id="modelList"></div>
+<h3>Model</h3>
+<div class="model-options">
+<img src="images/Model1.jpg" loading="lazy" onclick="selectModel(this)" class="active">
+<img src="images/Model2.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model3.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model4.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model5.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model6.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model7.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model8.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model9.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model PPG1.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model PPG2.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model PPG3.jpg" loading="lazy" onclick="selectModel(this)">
 </div>
 </div>
 
@@ -159,47 +145,6 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 let currentImages=[];
 let currentIndex=0;
 
-/* TOGGLE MODEL */
-function toggleModel(){
-const box=document.getElementById("modelList");
-const btn=document.querySelector(".toggleModel");
-if(box.classList.contains("hide")){
-  box.classList.remove("hide");
-  box.classList.add("show");
-  btn.innerHTML="Sembunyikan Model ▲";
-}else{
-  box.classList.add("hide");
-  box.classList.remove("show");
-  btn.innerHTML="Tampilkan Model ▼";
-}
-}
-
-/* LOAD MODEL AUTO */
-const modelList=document.getElementById("modelList");
-let m=1, missModel=0;
-function loadModels(){
-  let src=`images/Model${m}.jpg`;
-  let img=new Image();
-  img.src=src;
-
-  img.onload=()=>{
-    missModel=0;
-    let thumb=document.createElement("img");
-    thumb.src=src;
-    thumb.loading="lazy";
-    thumb.onclick=()=>selectModel(thumb);
-    if(m===1) thumb.classList.add("active");
-    modelList.appendChild(thumb);
-    m++; loadModels();
-  };
-
-  img.onerror=()=>{
-    missModel++; m++;
-    if(missModel<5) loadModels();
-  };
-}
-loadModels();
-
 /* pilih model */
 function selectModel(el){
 document.querySelectorAll(".model-options img").forEach(i=>i.classList.remove("active"));
@@ -209,7 +154,7 @@ currentIndex=0;
 document.getElementById("mainImage").src=el.src;
 }
 
-/* GALERI AUTO */
+/* GALERI AUTO TANPA PUTUS */
 function loadGallery(folder,btn){
 document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
@@ -218,8 +163,9 @@ const gallery=document.getElementById("gallery");
 gallery.innerHTML="";
 currentImages=[];
 
-let i=1, miss=0;
-const maxMiss=6;
+let i=1;
+let miss=0;
+const maxMiss=5;
 
 function tryLoad(){
 let src=`images/${folder}/${folder} ${i}.webp`;
@@ -227,22 +173,26 @@ let img=new Image();
 img.src=src;
 
 img.onload=()=>{
-  miss=0;
-  currentImages.push(src);
-  let thumb=document.createElement("img");
-  thumb.src=src;
-  thumb.loading="lazy";
-  thumb.onclick=()=>{
-    currentIndex=currentImages.indexOf(src);
-    document.getElementById("mainImage").src=src;
-  };
-  gallery.appendChild(thumb);
-  i++; tryLoad();
+miss=0;
+currentImages.push(src);
+let thumb=document.createElement("img");
+thumb.src=src;
+thumb.loading="lazy";
+thumb.onclick=()=>{
+currentIndex=currentImages.indexOf(src);
+document.getElementById("mainImage").src=src;
+};
+gallery.appendChild(thumb);
+i++;
+tryLoad();
 };
 
 img.onerror=()=>{
-  miss++; i++;
-  if(miss<maxMiss) tryLoad();
+miss++;
+i++;
+if(miss<maxMiss){
+tryLoad();
+}
 };
 }
 tryLoad();
