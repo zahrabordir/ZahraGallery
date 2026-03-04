@@ -9,7 +9,12 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 .left,.right{width:50%}
 
 /* MAIN IMAGE */
-.main-img img{width:100%;border-radius:8px;transition:.3s}
+.main-img img{
+  width:100%;
+  border-radius:8px;
+  cursor:zoom-in;
+  transition:.3s;
+}
 
 /* MODEL */
 .model-options{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
@@ -38,11 +43,12 @@ touch-action:none;
 }
 .closeBtn{
 position:absolute;top:15px;right:15px;
-width:30px;height:30px;
+width:26px;height:26px;
 background:black;color:white;
 border-radius:50%;
-text-align:center;line-height:30px;
+text-align:center;line-height:26px;
 cursor:pointer;font-weight:bold;
+font-size:14px;
 }
 .navBtn{
 position:absolute;top:50%;
@@ -65,8 +71,9 @@ color:white;font-size:14px;
 
 <div class="container">
 <div class="left">
+
 <div class="main-img">
-<img id="mainImage" src="images/Model1.jpg">
+<img id="mainImage" src="images/Model1.jpg" onclick="openLightbox(currentIndex)">
 </div>
 
 <div class="model-options">
@@ -77,12 +84,13 @@ color:white;font-size:14px;
 <img src="images/Model5.jpg" onclick="selectModel(this)">
 <img src="images/Model6.jpg" onclick="selectModel(this)">
 </div>
+
 </div>
 
 <div class="right">
-<h1>GALERI SELEMPANG WISUDA</h1>
+<h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
 
-<h3>Pilihan Motif</h3>
+<h3>Galeri</h3>
 <div class="color-options">
 <button class="active" onclick="loadGallery('Batik Daun',this)">Batik Daun</button>
 <button onclick="loadGallery('Batik Flora',this)">Batik Flora</button>
@@ -106,17 +114,19 @@ color:white;font-size:14px;
 </div>
 
 <script>
-const imageCount=3;
+const imageCount=3; // jumlah gambar per folder
 let currentImages=[];
 let currentIndex=0;
 let startX=0,scale=1;
 
+/* pilih model */
 function selectModel(el){
 document.querySelectorAll(".model-options img").forEach(i=>i.classList.remove("active"));
 el.classList.add("active");
 document.getElementById("mainImage").src=el.src;
 }
 
+/* load galeri batik */
 function loadGallery(folder,btn){
 document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
@@ -130,29 +140,33 @@ let src=`images/${folder}/${folder} ${i}.webp`;
 currentImages.push(src);
 let img=document.createElement("img");
 img.src=src;
-img.onclick=()=>openLightbox(i-1);
+
+/* klik galeri → ganti gambar utama */
+img.onclick=()=>{
+currentIndex=i-1;
+document.getElementById("mainImage").src=src;
+};
+
 gallery.appendChild(img);
 }
 }
 
+/* LIGHTBOX */
 function openLightbox(index){
 currentIndex=index;
 document.getElementById("lightbox").style.display="flex";
 updateLightbox();
 }
-
 function closeLightbox(){
 document.getElementById("lightbox").style.display="none";
 scale=1;
 document.getElementById("lightImg").style.transform="scale(1)";
 }
-
 function updateLightbox(){
 const img=document.getElementById("lightImg");
 img.src=currentImages[currentIndex];
 document.getElementById("indicator").innerText=`${currentIndex+1} / ${currentImages.length}`;
 }
-
 function nextImg(){
 currentIndex=(currentIndex+1)%currentImages.length;
 updateLightbox();
@@ -171,7 +185,7 @@ if(diff>50) prevImg();
 if(diff<-50) nextImg();
 });
 
-/* pinch zoom */
+/* zoom */
 lightImg.addEventListener("wheel",e=>{
 e.preventDefault();
 scale+=e.deltaY*-0.001;
@@ -179,11 +193,13 @@ scale=Math.min(Math.max(.5,scale),3);
 lightImg.style.transform=`scale(${scale})`;
 });
 
+/* default */
 loadGallery("Batik Daun",document.querySelector(".color-options button"));
 </script>
 
 </body>
 </html>
+
 
 
 
