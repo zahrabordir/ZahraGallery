@@ -3,222 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <title>Produk Selempang Wisuda</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{
-  margin:0;
   font-family:Arial, sans-serif;
+  margin:0;
   background:#f5f5f5;
 }
 .container{
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
-  background:white;
   padding:20px;
+  background:#fff;
+  display:flex;
+  gap:20px;
 }
-.product{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
+.left{
+  width:50%;
+}
+.right{
+  width:50%;
 }
 
-/* IMAGE AREA */
+/* MAIN IMAGE */
 .main-img{
   width:100%;
-  border-radius:6px;
+  border-radius:8px;
+  overflow:hidden;
 }
-.thumb{
-  display:flex;
-  gap:10px;
+.main-img img{
+  width:100%;
+  display:block;
+  transition:opacity .3s ease;
+}
+.fade-out{
+  opacity:0;
+}
+
+/* MODEL OPTIONS */
+.model-options{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:8px;
   margin-top:10px;
 }
-.thumb img{
-  width:80px;
-  border:2px solid #ddd;
-  border-radius:4px;
-  cursor:pointer;
-}
-.thumb img.active{
-  border-color:#ee4d2d;
-}
-
-/* INFO AREA */
-h1{
-  font-size:22px;
-  margin-bottom:10px;
-}
-.price{
-  color:#ee4d2d;
-  font-size:28px;
-  font-weight:bold;
-  margin:15px 0;
-}
-
-/* MODEL THUMB */
-.model-options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
 .model-options img{
-  width:60px;
-  height:60px;
-  object-fit:cover;
-  border:2px solid #ccc;
-  border-radius:6px;
+  width:100%;
   cursor:pointer;
+  border:2px solid transparent;
+  border-radius:6px;
 }
 .model-options img.active{
-  border-color:#ee4d2d;
+  border-color:#ff5722;
 }
 
-/* WARNA */
-.color-options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
+/* INFO */
+h1{
+  font-size:20px;
+  margin:0 0 10px;
+}
+.price{
+  color:#ff5722;
+  font-size:24px;
+  font-weight:bold;
+  margin:10px 0;
 }
 .color-options button{
-  border:1px solid #ccc;
-  background:white;
   padding:8px 12px;
-  border-radius:4px;
+  margin:4px;
+  border:1px solid #ccc;
+  background:#fff;
   cursor:pointer;
 }
 .color-options button.active{
-  border-color:#ee4d2d;
-  color:#ee4d2d;
-}
-
-/* BUTTONS */
-.actions{
-  display:flex;
-  gap:15px;
-  margin-top:25px;
-}
-.cart{
-  flex:1;
-  background:white;
-  border:1px solid #ee4d2d;
-  color:#ee4d2d;
-  padding:12px;
-  border-radius:4px;
-  font-size:16px;
-  cursor:pointer;
+  border-color:#ff5722;
+  background:#ffe7de;
 }
 .buy{
-  flex:1;
-  background:#ee4d2d;
+  margin-top:20px;
+}
+.buy button{
+  padding:12px 20px;
   border:none;
-  color:white;
-  padding:12px;
-  border-radius:4px;
   font-size:16px;
   cursor:pointer;
 }
-
-/* MOBILE */
-@media(max-width:768px){
-  .product{
-    grid-template-columns:1fr;
-  }
+.cart{
+  background:#fff;
+  border:1px solid #ff5722;
+  color:#ff5722;
+}
+.now{
+  background:#ff5722;
+  color:#fff;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="product">
-
-    <!-- LEFT IMAGE -->
-    <div>
-      <img id="mainImage" src="images/Batik Daun/Batik Daun 1.webp" class="main-img">
-
-      <div class="thumb">
-        <img src="images/Batik Daun/Batik Daun 1.webp" class="active" onclick="changeImg(this)">
-        <img src="images/Batik Daun/Batik Daun 2.webp" onclick="changeImg(this)">
-        <img src="images/Batik Daun/Batik Daun 3.webp" onclick="changeImg(this)">
-      </div>
+  <div class="left">
+    <div class="main-img">
+      <img id="mainImage" src="images/Model1.jpg">
     </div>
 
-    <!-- RIGHT INFO -->
-    <div>
-      <h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
+    <!-- MODEL THUMBNAIL -->
+    <div class="model-options">
+      <img src="images/Model1.jpg" onclick="selectModel(this)" class="active">
+      <img src="images/Model2.jpg" onclick="selectModel(this)">
+      <img src="images/Model3.jpg" onclick="selectModel(this)">
+      <img src="images/Model4.jpg" onclick="selectModel(this)">
+      <img src="images/Model5.jpg" onclick="selectModel(this)">
+      <img src="images/Model6.jpg" onclick="selectModel(this)">
+      <img src="images/Model7.jpg" onclick="selectModel(this)">
+      <img src="images/Model8.jpg" onclick="selectModel(this)">
+      <img src="images/Model9.jpg" onclick="selectModel(this)">
+      <img src="images/Model PPG1.jpg" onclick="selectModel(this)">
+      <img src="images/Model PPG2.jpg" onclick="selectModel(this)">
+      <img src="images/Model PPG3.jpg" onclick="selectModel(this)">
+    </div>
+  </div>
 
-      <div class="price">Rp65.000</div>
+  <div class="right">
+    <h1>SELEMPANG WISUDA LEHER MOTIF BATIK DAUN</h1>
 
-      <!-- PILIHAN MODEL -->
-      <div style="margin:15px 0;">
-        <strong>Pilihan Model</strong>
-        <div class="model-options">
-          <img src="images/Model1.jpg" class="active" onclick="selectModel(this)">
-          <img src="images/Model2.jpg" onclick="selectModel(this)">
-          <img src="images/Model3.jpg" onclick="selectModel(this)">
-          <img src="images/Model4.jpg" onclick="selectModel(this)">
-          <img src="images/Model5.jpg" onclick="selectModel(this)">
-          <img src="images/Model6.jpg" onclick="selectModel(this)">
-          <img src="images/Model7.jpg" onclick="selectModel(this)">
-          <img src="images/Model8.jpg" onclick="selectModel(this)">
-          <img src="images/Model9.jpg" onclick="selectModel(this)">
-          <img src="images/Model PPG1.jpg" onclick="selectModel(this)">
-          <img src="images/Model PPG2.jpg" onclick="selectModel(this)">
-          <img src="images/Model PPG3.jpg" onclick="selectModel(this)">
-        </div>
-      </div>
+    <div class="price">Rp65.000</div>
 
-      <!-- WARNA -->
-      <div style="margin:15px 0;">
-        <strong>Warna + Tulisan</strong>
-        <div class="color-options">
-          <button class="active">Maroon Gold</button>
-          <button>Maroon Silver</button>
-          <button>Hitam Gold</button>
-          <button>Hitam Silver</button>
-          <button>Navi Gold</button>
-          <button>Navi Silver</button>
-          <button>Warna Custom</button>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="cart">🛒 Masukkan Keranjang</button>
-        <button class="buy">Beli Sekarang</button>
-      </div>
-
+    <h3>WARNA + TULISAN</h3>
+    <div class="color-options">
+      <button class="active">Maroon Gold</button>
+      <button>Maroon Silver</button>
+      <button>Hitam Gold</button>
+      <button>Hitam Silver</button>
+      <button>Navi Gold</button>
+      <button>Navi Silver</button>
+      <button>Warna Custom</button>
     </div>
 
+    <div class="buy">
+      <button class="cart">Masukkan Keranjang</button>
+      <button class="now">Beli Sekarang</button>
+    </div>
   </div>
 </div>
 
 <script>
-function changeImg(el){
-  document.getElementById("mainImage").src = el.src;
-  document.querySelectorAll(".thumb img").forEach(img=>{
-    img.classList.remove("active");
-  });
-  el.classList.add("active");
-}
+document.addEventListener("DOMContentLoaded", function(){
 
-function selectModel(el){
-  // aktifkan border model
-  document.querySelectorAll(".model-options img").forEach(img=>{
-    img.classList.remove("active");
-  });
-  el.classList.add("active");
+  window.selectModel = function(el){
+    const main = document.getElementById("mainImage");
 
-  // GANTI GAMBAR UTAMA SESUAI MODEL
-  document.getElementById("mainImage").src = el.src;
-}
+    document.querySelectorAll(".model-options img").forEach(img=>{
+      img.classList.remove("active");
+    });
+    el.classList.add("active");
 
-// warna aktif
-document.querySelectorAll(".color-options button").forEach(btn=>{
-  btn.addEventListener("click", function(){
-    document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
-    this.classList.add("active");
+    main.classList.add("fade-out");
+    setTimeout(()=>{
+      main.src = el.src;
+      main.classList.remove("fade-out");
+    },200);
+  }
+
+  document.querySelectorAll(".color-options button").forEach(btn=>{
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
+      this.classList.add("active");
+    });
   });
+
 });
 </script>
 
 </body>
 </html>
-
