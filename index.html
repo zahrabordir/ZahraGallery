@@ -43,27 +43,46 @@ header{
   left:0;top:0;width:100%;height:100%;
   background:rgba(0,0,0,.85);
   justify-content:center;align-items:center;
-  flex-direction:column
+}
+#modalContent{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 #modalImg{
-  max-width:90%;max-height:80%;
+  max-width:90vw;
+  max-height:80vh;
   border-radius:10px;
   opacity:0;
   transition:opacity .4s ease-in-out;
 }
 #modalImg.show{opacity:1}
 
-.modal-btn{
-  background:#ffcc00;border:none;
-  padding:10px 18px;margin:10px;
-  border-radius:20px;font-weight:bold;
-  cursor:pointer
+/* TOMBOL PREV NEXT */
+.nav-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#ffcc00;
+  border:none;
+  font-size:30px;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:50%;
+  opacity:0.2;
+  transition:opacity .2s;
 }
+.nav-btn:active{
+  opacity:0.8;
+}
+#prevBtn{left:-60px}
+#nextBtn{right:-60px}
 
 /* TOMBOL X */
 .close{
   position:absolute;
-  top:20px;right:25px;
+  top:-20px;right:-20px;
   width:40px;height:40px;
   background:red;color:white;
   border-radius:50%;
@@ -116,7 +135,6 @@ header{
   </div>
 </div>
 
-<!-- SUB GALERI -->
 <div id="galeri1" class="subgaleri">
 <h2>Batik Daun</h2>
 <img src="images/Batik Daun/Batik Daun 1.webp" onclick="openGallery(1,0)">
@@ -151,11 +169,11 @@ header{
 
 <!-- MODAL -->
 <div id="imgModal">
-  <div class="close" onclick="closeImg()">✕</div>
-  <img id="modalImg">
-  <div>
-    <button class="modal-btn" onclick="prev()">Prev</button>
-    <button class="modal-btn" onclick="next()">Next</button>
+  <div id="modalContent">
+    <button class="nav-btn" id="prevBtn" onclick="prev()">❮</button>
+    <img id="modalImg">
+    <button class="nav-btn" id="nextBtn" onclick="next()">❯</button>
+    <div class="close" onclick="closeImg()">✕</div>
   </div>
 </div>
 
@@ -207,11 +225,9 @@ function closeImg(){
 
 /* SWIPE */
 const modal = document.getElementById("imgModal");
-
 modal.addEventListener("touchstart", e=>{
   startX = e.touches[0].clientX;
 });
-
 modal.addEventListener("touchend", e=>{
   let endX = e.changedTouches[0].clientX;
   if(startX - endX > 50) next();
@@ -221,6 +237,7 @@ modal.addEventListener("touchend", e=>{
 
 </body>
 </html>
+
 
 
 
