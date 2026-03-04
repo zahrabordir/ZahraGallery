@@ -17,7 +17,11 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 }
 
 /* MODEL */
-.model-options{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.model-options{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+  gap:8px;
+  margin-top:10px;
 .model-options img{width:100%;cursor:pointer;border:2px solid transparent;border-radius:6px}
 .model-options img.active{border-color:#ff5722}
 
@@ -205,6 +209,7 @@ loadGallery("Batik Daun",document.querySelector(".color-options button"));
 
 </body>
 </html>
+
 
 
 
