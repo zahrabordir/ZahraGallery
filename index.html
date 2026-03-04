@@ -200,10 +200,14 @@ function changeImg(el){
 }
 
 function selectModel(el){
+  // aktifkan border model
   document.querySelectorAll(".model-options img").forEach(img=>{
     img.classList.remove("active");
   });
   el.classList.add("active");
+
+  // GANTI GAMBAR UTAMA SESUAI MODEL
+  document.getElementById("mainImage").src = el.src;
 }
 
 // warna aktif
@@ -217,3 +221,4 @@ document.querySelectorAll(".color-options button").forEach(btn=>{
 
 </body>
 </html>
+
