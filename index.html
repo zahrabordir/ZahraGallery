@@ -3,10 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Selempang Wisuda</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{font-family:Arial;margin:0;background:#f5f5f5}
 .container{max-width:1100px;margin:auto;padding:20px;background:#fff;display:flex;gap:20px}
 .left,.right{width:50%}
+
+/* MOBILE */
+@media(max-width:768px){
+  .container{flex-direction:column}
+  .left,.right{width:100%}
+}
 
 /* MAIN IMAGE */
 .main-img img{
@@ -17,7 +24,7 @@ body{font-family:Arial;margin:0;background:#f5f5f5}
 }
 .fade{opacity:0}
 
-/* MODEL (FIX AUTO FIT) */
+/* MODEL */
 .model-options{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
@@ -123,18 +130,18 @@ font-size:14px
 
 <h3>Model</h3>
 <div class="model-options">
-<img src="images/Model1.jpg" onclick="selectModel(this)" class="active">
-<img src="images/Model2.jpg" onclick="selectModel(this)">
-<img src="images/Model3.jpg" onclick="selectModel(this)">
-<img src="images/Model4.jpg" onclick="selectModel(this)">
-<img src="images/Model5.jpg" onclick="selectModel(this)">
-<img src="images/Model6.jpg" onclick="selectModel(this)">
-<img src="images/Model7.jpg" onclick="selectModel(this)">
-<img src="images/Model8.jpg" onclick="selectModel(this)">
-<img src="images/Model9.jpg" onclick="selectModel(this)">
-<img src="images/Model PPG1.jpg" onclick="selectModel(this)">
-<img src="images/Model PPG2.jpg" onclick="selectModel(this)">
-<img src="images/Model PPG3.jpg" onclick="selectModel(this)">
+<img src="images/Model1.jpg" loading="lazy" onclick="selectModel(this)" class="active">
+<img src="images/Model2.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model3.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model4.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model5.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model6.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model7.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model8.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model9.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model PPG1.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model PPG2.jpg" loading="lazy" onclick="selectModel(this)">
+<img src="images/Model PPG3.jpg" loading="lazy" onclick="selectModel(this)">
 </div>
 
 </div>
@@ -166,16 +173,15 @@ font-size:14px
 </div>
 
 <script>
-const imageCount = 3;
-let currentImages = [];
-let currentIndex = 0;
-let startX = 0, scale = 1;
+let currentImages=[];
+let currentIndex=0;
+let startX=0,scale=1;
 
 function setMainImage(src){
-  const main = document.getElementById("mainImage");
+  const main=document.getElementById("mainImage");
   main.classList.add("fade");
   setTimeout(()=>{
-    main.src = src;
+    main.src=src;
     main.classList.remove("fade");
   },150);
 }
@@ -184,31 +190,40 @@ function setMainImage(src){
 function selectModel(el){
   document.querySelectorAll(".model-options img").forEach(i=>i.classList.remove("active"));
   el.classList.add("active");
-  currentImages = [el.src];
-  currentIndex = 0;
+  currentImages=[el.src];
+  currentIndex=0;
   setMainImage(el.src);
 }
 
-/* load galeri */
+/* AUTO LOAD GALERI */
 function loadGallery(folder,btn){
   document.querySelectorAll(".color-options button").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
 
-  const gallery = document.getElementById("gallery");
+  const gallery=document.getElementById("gallery");
   gallery.innerHTML="";
   currentImages=[];
 
-  for(let i=1;i<=imageCount;i++){
+  let i=1;
+  function tryLoad(){
     let src=`images/${folder}/${folder} ${i}.webp`;
-    currentImages.push(src);
-    let img=document.createElement("img");
+    let img=new Image();
     img.src=src;
-    img.onclick=()=>{
-      currentIndex=i-1;
-      setMainImage(src);
+    img.onload=()=>{
+      currentImages.push(src);
+      let thumb=document.createElement("img");
+      thumb.src=src;
+      thumb.loading="lazy";
+      thumb.onclick=()=>{
+        currentIndex=i-1;
+        setMainImage(src);
+      };
+      gallery.appendChild(thumb);
+      i++;
+      tryLoad();
     };
-    gallery.appendChild(img);
   }
+  tryLoad();
 }
 
 /* LIGHTBOX */
@@ -262,7 +277,6 @@ loadGallery("Batik Daun",document.querySelector(".color-options button"));
 
 </body>
 </html>
-
 
 
 
