@@ -5,81 +5,104 @@
 <title>Selempang Wisuda Custom</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{margin:0;font-family:Arial;background:#f2f2f2}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(to bottom,#f8f9ff,#eef1ff);
+}
 
 /* HEADER */
 header{
-  background:linear-gradient(to right,#6a11cb,#2575fc);
+  background:linear-gradient(135deg,#6a11cb,#2575fc);
   color:white;
-  padding:50px 20px;
-  text-align:center
+  padding:70px 20px;
+  text-align:center;
+  border-bottom-left-radius:50px;
+  border-bottom-right-radius:50px;
 }
+
+header h1{margin:0;font-size:38px}
+header p{font-size:18px}
 
 .btn{
   background:#ffcc00;
   color:black;
-  padding:12px 25px;
+  padding:12px 28px;
   text-decoration:none;
-  border-radius:5px;
+  border-radius:30px;
   display:inline-block;
   margin-top:15px;
-  font-weight:bold
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#ffb300;
+  transform:scale(1.05);
 }
 
 .container{
   max-width:1200px;
   margin:auto;
-  padding:30px 15px
+  padding:40px 15px;
 }
 
 /* GALERI */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px
+  gap:25px;
 }
 
 .card{
   background:white;
-  border-radius:10px;
+  border-radius:15px;
   overflow:hidden;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
-  text-align:center
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+  text-align:center;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 .card img{
   width:100%;
   height:260px;
   object-fit:cover;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .price{color:#e91e63;font-weight:bold}
 
 /* KEUNGGULAN */
 .keunggulan{
-  background:linear-gradient(to right,#6a11cb,#2575fc);
-  padding:50px 20px;
-  margin-top:30px
+  background:linear-gradient(135deg,#2575fc,#6a11cb);
+  padding:60px 20px;
+  margin-top:50px;
+  border-radius:40px 40px 0 0;
 }
 
 .keunggulan h2{
   color:white;
-  text-align:center
+  text-align:center;
+  margin-bottom:30px;
 }
 
 .features{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  margin-top:20px
 }
 
 .feature{
   background:white;
-  padding:20px;
-  border-radius:10px;
-  text-align:center
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 5px 10px rgba(0,0,0,0.15);
 }
 
 /* FOOTER */
@@ -88,7 +111,18 @@ footer{
   color:white;
   text-align:center;
   padding:20px;
-  margin-top:30px
+}
+
+/* MODAL */
+#imgModal{
+  display:none;
+  position:fixed;
+  z-index:999;
+  left:0; top:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
 }
 </style>
 </head>
@@ -102,71 +136,73 @@ footer{
 </header>
 
 <div class="container">
-<h2>Galeri Produk</h2>
+<h2 style="text-align:center">Galeri Produk</h2>
 
 <div class="gallery">
-  <div class="card">
-    <img src="images/Zahra Frame-1.jpg" onclick="openImg(this.src)" alt="Model 1">
-    <h3>Model 1</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-2.jpg" onclick="openImg(this.src)" alt="Model 2">
-    <h3>Model 2</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-1.jpg" onclick="openImg(this.src)">
+<h3>Model 1</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-3.jpg" onclick="openImg(this.src)" alt="Model 3">
-    <h3>Model 3</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-2.jpg" onclick="openImg(this.src)">
+<h3>Model 2</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-4.jpg" onclick="openImg(this.src)" alt="Model 4">
-    <h3>Model 4</h3>
-    <p class="price">Terlaris</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-3.jpg" onclick="openImg(this.src)">
+<h3>Model 3</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-5.jpg" onclick="openImg(this.src)" alt="Model 5">
-    <h3>Model 5</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-4.jpg" onclick="openImg(this.src)">
+<h3>Model 4</h3>
+<p class="price">Terlaris 🔥</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-6.jpg" onclick="openImg(this.src)" alt="Model 6">
-    <h3>Model 6</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-5.jpg" onclick="openImg(this.src)">
+<h3>Model 5</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-7.jpg" onclick="openImg(this.src)" alt="Model 7">
-    <h3>Model 7</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-6.jpg" onclick="openImg(this.src)">
+<h3>Model 6</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-8.jpg" onclick="openImg(this.src)" alt="Model 8">
-    <h3>Model 8</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Pesan</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-7.jpg" onclick="openImg(this.src)">
+<h3>Model 7</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
 
-  <div class="card">
-    <img src="images/Zahra Frame-9.jpg" onclick="openImg(this.src)" alt="Model 9">
-    <h3>Model 9</h3>
-    <p class="price">Chat Admin</p>
-    <a href="https://wa.me/6285117110259" class="btn">Saya mau ini</a>
-  </div>
+<div class="card">
+<img src="images/Zahra Frame-8.jpg" onclick="openImg(this.src)">
+<h3>Model 8</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
+
+<div class="card">
+<img src="images/Zahra Frame-9.jpg" onclick="openImg(this.src)">
+<h3>Model 9</h3>
+<p class="price">Chat Admin</p>
+<a href="https://wa.me/6285117110259" class="btn">Pesan</a>
+</div>
+
 </div>
 </div>
 
@@ -174,15 +210,15 @@ footer{
 <h2>Keunggulan Produk</h2>
 <div class="features">
   <div class="feature">
-    <h3>Bisa Custom</h3>
+    <h3>🎨 Bisa Custom</h3>
     <p>Logo, jurusan, dan nama bisa request</p>
   </div>
   <div class="feature">
-    <h3>Banyak Motif</h3>
+    <h3>🌈 Banyak Motif</h3>
     <p>Pilihan warna & desain lengkap</p>
   </div>
   <div class="feature">
-    <h3>Pengerjaan Cepat</h3>
+    <h3>⚡ Pengerjaan Cepat</h3>
     <p>Produksi rapi dengan mesin</p>
   </div>
 </div>
@@ -192,25 +228,10 @@ footer{
 <p>© 2026 Zahra Gallery</p>
 </footer>
 
-<!-- MODAL ZOOM -->
-<div id="imgModal" style="
-display:none;
-position:fixed;
-z-index:999;
-left:0; top:0;
-width:100%; height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
-">
-  <span onclick="closeImg()" style="
-position:absolute;
-top:20px; right:30px;
-font-size:40px;
-color:white;
-cursor:pointer;
-">&times;</span>
-  <img id="modalImg" style="max-width:90%; max-height:90%; border-radius:10px;">
+<!-- MODAL -->
+<div id="imgModal">
+  <span onclick="closeImg()" style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
+  <img id="modalImg" style="max-width:90%;max-height:90%;border-radius:10px;">
 </div>
 
 <script>
@@ -225,5 +246,6 @@ function closeImg(){
 
 </body>
 </html>
+
 
 
